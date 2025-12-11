@@ -55,7 +55,6 @@ export default function PaywallPage() {
             <p className="text-neutral-500">One-time payment of $1.99</p>
             
             <MneeCheckoutWrapper
-              apiBaseUrl="/api"
               previewMode={true}
               config={{
                 buttonType: 'PAYWALL',

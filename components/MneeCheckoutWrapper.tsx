@@ -13,9 +13,12 @@ const MneeCheckout = dynamic(
   }
 );
 
-const MneeCheckoutWrapper: FC<MneeCheckoutProps> = (props) => {
+const MneeCheckoutWrapper: FC<Omit<MneeCheckoutProps, 'apiBaseUrl'>> = (props) => {
   return (
-    <MneeCheckout {...props} />
+    <MneeCheckout
+      {...props}
+      apiBaseUrl={process.env.NEXT_PUBLIC_API_BASE_URL || ''}
+    />
   )
 }
 

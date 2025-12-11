@@ -99,7 +99,6 @@ function ProductCard({ title, price, image, config }: any) {
         
         <div className="pt-4 border-t border-neutral-100 dark:border-neutral-700">
           <MneeCheckoutWrapper
-            apiBaseUrl="/api"
             previewMode={true}
             config={config}
             theme="auto"
