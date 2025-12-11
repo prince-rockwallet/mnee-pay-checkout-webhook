@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 const ReactJson = dynamic(() => import("react-json-view"), { ssr: false });
 
 interface WebhookLog {
-  id: number;
+  id: string;
   receivedAt: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
@@ -15,6 +15,7 @@ interface WebhookLog {
 export default function Home() {
   const [logs, setLogs] = useState<WebhookLog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isLive, setIsLive] = useState(true);
 
   const fetchLogs = async () => {
     try {
@@ -31,14 +32,22 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Initial fetch
     fetchLogs();
-
-    // Poll every 2 seconds
-    const intervalId = setInterval(fetchLogs, 2000);
-
-    return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    if (isLive) {
+      fetchLogs();
+      // Start polling
+      intervalId = setInterval(fetchLogs, 2000);
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [isLive]);
 
   return (
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 p-8 font-sans transition-colors duration-300">
@@ -56,26 +65,49 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Status Indicator */}
-        <div className="flex justify-between items-center bg-white dark:bg-neutral-800 p-4 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700">
-          <div className="flex items-center gap-2">
+        {/* Control Bar */}
+        <div className="flex flex-col sm:flex-row justify-between items-center bg-white dark:bg-neutral-800 p-4 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-700 gap-4">
+          
+          {/* Status Indicator */}
+          <div className="flex items-center gap-3">
             <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              {isLive && (
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              )}
+              <span 
+                className={`relative inline-flex rounded-full h-3 w-3 ${
+                  isLive ? "bg-green-500" : "bg-red-500"
+                }`}
+              ></span>
             </span>
             <span className="text-sm font-medium text-neutral-600 dark:text-neutral-300">
-              Listening for events...
+              {isLive ? "Live Polling Active" : "Polling Paused"}
             </span>
           </div>
-          <button
-            onClick={() => setLogs([])}
-            className="text-sm text-red-500 hover:text-red-700 font-semibold px-3 py-1 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition"
-          >
-            Clear History
-          </button>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsLive(!isLive)}
+              className={`text-sm font-semibold px-4 py-2 rounded-md transition border ${
+                isLive
+                  ? "border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700"
+                  : "bg-green-600 text-white hover:bg-green-700 border-transparent"
+              }`}
+            >
+              {isLive ? "Stop Live" : "Go Live"}
+            </button>
+            
+            <button
+              onClick={() => setLogs([])}
+              className="text-sm text-red-500 hover:text-red-700 font-semibold px-4 py-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition"
+            >
+              Clear View
+            </button>
+          </div>
         </div>
 
-        {/* Content Feed */}
+        {/* Logs Feed */}
         <div className="space-y-4">
           {loading ? (
             // Loading Skeletons
@@ -112,12 +144,12 @@ export default function Home() {
                 <div className="p-4 bg-[#1e1e1e] overflow-hidden">
                   <ReactJson
                     src={log.data}
-                    theme="monokai" // A dark theme that fits well
+                    theme="monokai"
                     collapsed={false}
                     displayDataTypes={false}
                     enableClipboard={true}
-                    style={{ backgroundColor: "transparent" }} // Blend with container
-                    name={false} // Hide root name
+                    style={{ backgroundColor: "transparent" }}
+                    name={false}
                   />
                 </div>
               </div>
