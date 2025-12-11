@@ -1,59 +1,93 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Link from 'next/link';
-import { ArrowRight, ShoppingCart, Lock, Heart, Radio } from 'lucide-react';
+import { ArrowRight, ShoppingCart, Lock, Heart, Radio, Activity } from 'lucide-react';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center justify-center p-8">
-      <div className="text-center space-y-6 max-w-3xl">
-        <h1 className="text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
-          MNEE Pay Testbench
-        </h1>
-        <p className="text-xl text-neutral-600 dark:text-neutral-400">
-          Select a functionality to test the Checkout SDK and visualize webhooks in real-time.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 w-full">
-          <Card 
-             href="/webhook" 
-             title="Webhook Inspector" 
-             icon={<Radio className="w-8 h-8 text-pink-500"/>}
-             desc="View real-time events"
-          />
-          <Card 
-             href="/donation" 
-             title="Donation" 
-             icon={<Heart className="w-8 h-8 text-red-500"/>}
-             desc="Test custom amounts"
-          />
-          <Card 
-             href="/paywall" 
-             title="Paywall" 
-             icon={<Lock className="w-8 h-8 text-purple-500"/>}
-             desc="Test content locking"
-          />
-          <Card 
-             href="/ecommerce" 
-             title="E-commerce" 
-             icon={<ShoppingCart className="w-8 h-8 text-blue-500"/>}
-             desc="Test shopping cart"
-          />
+    <div className="flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
+      <div className="text-center space-y-8 max-w-3xl mx-auto mb-16">
+        <div className="flex justify-center">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/30 text-indigo-300 text-sm font-medium border border-indigo-500/20">
+            <Activity className="w-4 h-4" />
+            <span>Live Testbench Environment</span>
+          </span>
         </div>
+        
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+          MNEE Pay Integration
+        </h1>
+        
+        <p className="text-xl text-neutral-400 max-w-2xl mx-auto">
+          Test the Checkout SDK capabilities across different use cases and visualize webhook events in real-time.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
+        
+        <DashboardCard 
+           href="/webhook" 
+           title="Webhook Inspector" 
+           icon={<Radio className="w-6 h-6 text-white"/>}
+           iconBg="bg-pink-600"
+           desc="Visualize real-time POST events and JSON payloads from your integrations."
+        />
+
+        <DashboardCard 
+           href="/donation" 
+           title="Donation Flow" 
+           icon={<Heart className="w-6 h-6 text-white"/>}
+           iconBg="bg-rose-600"
+           desc="Test variable amounts, custom inputs, and tipping logic."
+        />
+
+        <DashboardCard 
+           href="/paywall" 
+           title="Paywall Access" 
+           icon={<Lock className="w-6 h-6 text-white"/>}
+           iconBg="bg-violet-600"
+           desc="Simulate content unlocking and digital access rights management."
+        />
+
+        <DashboardCard 
+           href="/ecommerce" 
+           title="E-commerce" 
+           icon={<ShoppingCart className="w-6 h-6 text-white"/>}
+           iconBg="bg-indigo-600"
+           desc="Full shopping cart experience with multiple products and checkout."
+        />
+      </div>
+
+      <div className="mt-20 pt-8 border-t border-neutral-800 text-center">
+        <p className="text-sm text-neutral-500">
+          Powered by <span className="font-semibold text-neutral-300">@mnee-pay/checkout</span> SDK
+        </p>
       </div>
     </div>
   );
 }
 
-function Card({ href, title, icon, desc }: any) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function DashboardCard({ href, title, icon, iconBg, desc }: any) {
   return (
-    <Link href={href} className="group block p-6 bg-white dark:bg-neutral-800 rounded-2xl shadow-sm border border-neutral-200 dark:border-neutral-700 hover:shadow-md hover:border-indigo-500 transition-all text-left">
-      <div className="mb-4">{icon}</div>
-      <h3 className="font-bold text-lg text-neutral-900 dark:text-white group-hover:text-indigo-600 transition-colors">{title}</h3>
-      <p className="text-sm text-neutral-500 mt-2">{desc}</p>
-      <div className="mt-4 flex items-center text-xs font-semibold text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">
-        Open <ArrowRight className="w-3 h-3 ml-1" />
+    <Link 
+      href={href} 
+      className="group relative flex flex-col p-6 bg-neutral-800 rounded-xl shadow-sm border border-neutral-700 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-200 ease-in-out"
+    >
+      <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-6 shadow-md ${iconBg}`}>
+        {icon}
+      </div>
+      
+      <h3 className="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">
+        {title}
+      </h3>
+      
+      <p className="mt-2 text-sm text-neutral-400 leading-relaxed grow">
+        {desc}
+      </p>
+      
+      <div className="mt-6 flex items-center text-sm font-semibold text-indigo-400">
+        Launch Demo <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
       </div>
     </Link>
   );
