@@ -125,10 +125,18 @@ export default function EcommercePage() {
                             <MneeCheckoutWrapper
                                 config={config}
                                 styling={{
-                                    buttonSize: 'full',
-                                    borderRadius: 'rounded',
-                                    primaryColor: config.primaryColor || '#4f46e5'
+                                  buttonSize: config.buttonSize || 'full',
+                                  borderRadius: config.borderRadius || 'rounded',
+                                  primaryColor: config.primaryColor || '#6366f1', // Indigo accent
+                                  accentColor: config.accentColor,
+                                  buttonColor: config.buttonColor,
+                                  buttonTextColor: config.buttonTextColor,
+                                  customCSS: config.customCSS,
+                                  fontFamily: config.fontFamily
                                 }}
+                                buttonId={buttonId}
+                                showConfetti={config.showConfetti}
+                                theme={config.theme}
                             />
                             <p className="text-center text-xs text-gray-500 mt-3">
                                 Secure checkout powered by MNEE
