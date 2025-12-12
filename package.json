@@ -1,5 +1,5 @@
 {
-  "name": "mnee-pay-checkout-webhook",
+  "name": "@mnee-pay/checkout-integration",
   "version": "0.1.0",
   "private": true,
   "scripts": {
