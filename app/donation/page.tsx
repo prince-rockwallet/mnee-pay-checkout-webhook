@@ -36,7 +36,7 @@ export default function DonationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-50 flex flex-col items-center justify-center p-6 relative overflow-hidden text-orange-900">
+    <div className="min-h-screen bg-linear-to-b from-amber-50 via-orange-50 to-yellow-50 flex flex-col items-center justify-center p-6 relative overflow-hidden text-orange-900">
       <Link 
         href="/" 
         className="absolute top-8 left-8 text-orange-700 hover:text-orange-900 transition-colors flex items-center gap-2 z-10 bg-amber-100 px-3 py-1 rounded shadow"

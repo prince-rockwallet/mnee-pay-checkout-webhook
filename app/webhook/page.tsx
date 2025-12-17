@@ -53,7 +53,7 @@ export default function WebhookPage() {
   }, [isLive]);
 
   return (
-    <div className="flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-50 text-orange-900">
+    <div className="flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 min-h-screen bg-linear-to-b from-amber-50 via-orange-50 to-yellow-50 text-orange-900">
       <main className="w-full max-w-5xl space-y-8">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-extrabold tracking-tight text-orange-800">

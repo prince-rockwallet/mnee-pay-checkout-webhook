@@ -35,7 +35,7 @@ export default function PaywallPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-50 text-neutral-900">
+    <div className="min-h-screen bg-linear-to-b from-amber-50 via-orange-50 to-yellow-50 text-neutral-900">
       <nav className="border-b border-amber-200 bg-amber-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-8">
@@ -106,7 +106,7 @@ export default function PaywallPage() {
                 </div>
 
                 {!isUnlocked && (
-                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-gradient-to-t from-amber-50 via-amber-50/90 to-amber-50/60">
+                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-linear-to-t from-amber-50 via-amber-50/90 to-amber-50/60">
                     <div className="bg-amber-100/90 backdrop-blur-xl p-8 rounded-2xl border border-amber-200 shadow-2xl max-w-sm w-full text-center space-y-6">
                       <div className="w-16 h-16 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-2">
                         <Lock className="w-8 h-8 text-orange-700" />

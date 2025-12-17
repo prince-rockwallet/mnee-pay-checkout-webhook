@@ -5,6 +5,7 @@ import type { MneeCheckoutProps } from '@mnee-pay/checkout';
 
 import dynamic from 'next/dynamic';
 import { getMneePayCheckoutBaseUrl } from '@/utils/utils';
+import ErrorBoundary from './ErrorBoundary';
 
 const MneeCheckout = dynamic(
   () => import('@mnee-pay/checkout').then((mod) => mod.MneeCheckout),
@@ -16,10 +17,12 @@ const MneeCheckout = dynamic(
 
 const MneeCheckoutWrapper: FC<Omit<MneeCheckoutProps, 'apiBaseUrl'>> = (props) => {
   return (
-    <MneeCheckout
-      {...props}
-      apiBaseUrl={getMneePayCheckoutBaseUrl()}
-    />
+    <ErrorBoundary>
+      <MneeCheckout
+        {...props}
+        apiBaseUrl={getMneePayCheckoutBaseUrl()}
+      />
+    </ErrorBoundary>
   )
 }
 

@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`antialiased h-full flex flex-col bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-50 text-neutral-900`}
+        className={`antialiased h-full flex flex-col bg-linear-to-b from-amber-50 via-orange-50 to-yellow-50 text-neutral-900`}
       >
         <nav className="bg-amber-200 shadow-md border-b border-amber-300 sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

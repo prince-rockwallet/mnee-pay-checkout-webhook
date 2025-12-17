@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -33,7 +34,7 @@ export default function EcommercePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-50 text-neutral-900">
+    <div className="min-h-screen bg-linear-to-b from-amber-50 via-orange-50 to-yellow-50 text-neutral-900">
       <nav className="border-b border-amber-300 bg-amber-100 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-8">
@@ -79,7 +80,7 @@ export default function EcommercePage() {
 
         {config && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 animate-in fade-in slide-in-from-bottom-8">
-            <div className="bg-amber-100 rounded-2xl overflow-hidden border border-amber-300 h-[500px] relative group shadow-sm">
+            <div className="bg-amber-100 rounded-2xl overflow-hidden border border-amber-300 h-125 relative group shadow-sm">
               <img 
                 src={config.productImage || "https://placehold.co/600x600/e5e7eb/4b5563?text=Product"} 
                 alt={config.productName || config.name} 

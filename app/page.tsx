@@ -5,7 +5,7 @@ import { ArrowRight, ShoppingCart, Lock, Heart, Radio, Activity } from 'lucide-r
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-50 text-neutral-900">
+    <div className="flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-amber-50 via-orange-50 to-yellow-50 text-neutral-900">
       <div className="text-center space-y-8 max-w-3xl mx-auto mb-16">
         <div className="flex justify-center">
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-200 text-amber-800 text-sm font-medium border border-amber-300">
