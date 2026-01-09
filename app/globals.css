@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-:root {
-  /* Force dark mode values by default */
+.app-theme {
   --background: #0a0a0a;
   --foreground: #ededed;
 }
